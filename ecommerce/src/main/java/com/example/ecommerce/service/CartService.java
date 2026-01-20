@@ -9,14 +9,20 @@ import org.springframework.stereotype.Service;
 
 import com.example.ecommerce.dto.AddToCartRequest;
 import com.example.ecommerce.model.CartItem;
+import com.example.ecommerce.model.Product;
 import com.example.ecommerce.repository.CartRepository;
+import com.example.ecommerce.repository.ProductRepository;
 
 @Service
 public class CartService{
     @Autowired
     private CartRepository cartRepository;
+    @Autowired 
+    private ProductRepository productRepository;
 
     public CartItem addToCart(AddToCartRequest request){
+        Product product = productRepository.findById(request.getProductId())
+                  .orElseThrow(()-> new RuntimeException("Product not found!"));
         CartItem cartItem = new CartItem();
         cartItem.setUserId(request.getUserId());
         cartItem.setProductId(request.getProductId());

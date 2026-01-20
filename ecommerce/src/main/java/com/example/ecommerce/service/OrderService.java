@@ -51,6 +51,8 @@ public class OrderService{
 
             }
             
+            orderItemRepository.saveAll(orderItems);
+            
             cartRepository.deleteAll(cartItems);
             OrderResponse response = new OrderResponse();
             response.setCreatedAt(savedOrder.getCreatedAt());
