@@ -27,7 +27,7 @@ public class CartService{
         cartItem.setUserId(request.getUserId());
         cartItem.setProductId(request.getProductId());
         cartItem.setQuantity(request.getQuantity());
-
+        cartItem.setPrice(product.getPrice());
         return cartRepository.save(cartItem);
     }
 
